@@ -19,13 +19,17 @@
 
       </div>
 
+      <% if (locals.timeframe) { %>
       <div
         class="flex md:flex-col justify-between items-center md:items-start w-full md:w-full px-10 py-5 md:px-7 md:py-3 h-[35%]">
 
         <a href="/daily" class="<%= timeframe === 'daily' ? 'text-slate-100' : 'hover:text-slate-100' %>">daily</a>
         <a href="/weekly" class="<%= timeframe === 'weekly' ? 'text-slate-100' : 'hover:text-slate-100' %>">weekly</a>
-        <a href="/monthly" class="<%= timeframe === 'monthly' ? 'text-slate-100' : 'hover:text-slate-100' %>">monthly</a>
+        <a href="/monthly"
+          class="<%= timeframe === 'monthly' ? 'text-slate-100' : 'hover:text-slate-100' %>">monthly</a>
       </div>
+
+      <% } %>
 
     </section>
 
@@ -61,7 +65,9 @@
                   <%= data[i].timeframes[timeframe].current %>hrs
                 </p>
 
-                <p class="font-medium md:self-start">last week - <%= data[i].timeframes[timeframe].previous %>hrs</p>
+                <p class="font-medium text-slate-400 md:self-start">
+                  <%= locals.label %> - <%= data[i].timeframes[timeframe].previous %>hrs
+                </p>
               </div>
 
             </div>
