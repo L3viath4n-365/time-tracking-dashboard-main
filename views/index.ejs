@@ -1,0 +1,78 @@
+<%- include('partials/header.ejs') %>
+
+  <main class="container w-screen md:w-4/5 h-3/4 flex flex-col md:flex-row gap-5 items-center py-5">
+
+    <section
+      class="container w-[90%] md:w-fit h-48 md:h-full flex flex-col justify-between items-end rounded-3xl bg-[hsl(235,46%,20%)] capitalize text-slate-500">
+
+
+      <div
+        class="bg-[hsl(246,80%,60%)] h-[65%] flex md:flex-col gap-5 w-full justify-center items-center md:items-start p-8 rounded-2xl">
+
+        <img src="images/image-jeremy.png" alt="Jeremy's image" class="size-15 outline-2 outline-white rounded-full">
+
+        <div class="flex flex-col gap-1">
+
+          <p class="text-slate-300"><span class="capitalize">report</span> for</p>
+          <h1 class="text-3xl md:text-4xl font-light text-slate-100">Jeremy Robson</h1>
+        </div>
+
+      </div>
+
+      <div
+        class="flex md:flex-col justify-between items-center md:items-start w-full md:w-full px-10 py-5 md:px-7 md:py-3 h-[35%]">
+
+        <a href="/daily" class="<%= timeframe === 'daily' ? 'text-slate-100' : 'hover:text-slate-100' %>">daily</a>
+        <a href="/weekly" class="<%= timeframe === 'weekly' ? 'text-slate-100' : 'hover:text-slate-100' %>">weekly</a>
+        <a href="/monthly" class="<%= timeframe === 'monthly' ? 'text-slate-100' : 'hover:text-slate-100' %>">monthly</a>
+      </div>
+
+    </section>
+
+    <section class="grid grid-cols-1 gap-5 md:grid-cols-3 md:grid-rows-2 w-[90%] h-full">
+
+      <% if (locals.data && locals.bgcolour) { %>
+
+        <% for (let i=0; i < data.length; i++) { %>
+
+          <div class="w-full flex flex-col items-end rounded-3xl <%= bgcolour[i] %> capitalize text-slate-500">
+
+            <div class="h-[15%]">
+
+              <img src="images/icon-<%= data[i].title %>.svg" alt="<%= data[i].title %> icon">
+            </div>
+
+            <div
+              class="h-[85%] p-8 md:p-4 bg-[hsl(235,46%,20%)] hover:bg-[hsl(235,45%,34%)] w-full rounded-3xl text-slate-100 flex flex-col justify-between">
+
+              <div class="w-full h-[40%] flex justify-between items-center">
+
+                <p class="text-lg font-extrabold">
+                  <%= data[i].title %>
+                </p>
+
+                <p class="text-3xl font-bold">...</p>
+              </div>
+
+              <div
+                class="w-full h-[60%] flex flex-row justify-between items-center md:flex-col md:justify-normal md:gap-2">
+
+                <p class="font-extralight text-5xl md:self-start">
+                  <%= data[i].timeframes[timeframe].current %>hrs
+                </p>
+
+                <p class="font-medium md:self-start">last week - <%= data[i].timeframes[timeframe].previous %>hrs</p>
+              </div>
+
+            </div>
+          </div>
+
+          <% } %>
+
+            <% } %>
+
+    </section>
+
+  </main>
+
+  <%- include('partials/footer.ejs') %>
