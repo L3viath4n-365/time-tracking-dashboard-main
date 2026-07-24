@@ -4,7 +4,6 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import compression from 'compression';
 import methodOverride from 'method-override';
-import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import apiRouter from './routes/api.js'
